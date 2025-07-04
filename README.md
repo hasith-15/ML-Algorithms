@@ -1,5 +1,5 @@
 
-                                                                               #LINEAR Regression.
+ #LINEAR Regression.
 
 #Senario: A company is trying to understand the relationship between the number of years of experience and its employe’s salary. By analysing this relationship,the company hopes to be able to predict the salary of new hires based on their years of experience.
 
@@ -75,7 +75,7 @@ $\text{Salary} = 70,797.75$
 Therefore, the predicted salary for someone with 5.0 years of experience is $70,797.75.
 
 
-                                                                           # Complete Linkage Clustering
+# Complete Linkage Clustering
 
 ## Complete Clustering# Hierarchical Clustering Analysis: Patient Health Profiles
 
