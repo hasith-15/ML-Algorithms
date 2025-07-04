@@ -258,6 +258,137 @@ P1    P2    P5    P3    P4
 
 The dendrogram visually confirms that P1, P2, and P5 form one broad group (patients with lower BPI but varying HR, where P5 has a significantly higher HR), while P3 and P4 form another distinct group (patients with higher BPI and lower HR). The final merge shows the overall dissimilarity between these two major patient segments.
 
+# Single-Linkage Clustering for Athletic Shoe Performance
+
+This document outlines the process of grouping similar athletic shoes based on their **Agility Score** and **Durability Score** using **Single-Linkage Clustering**.  
+The analysis is intended to help a data analyst at a Sports Equipment Company design more targeted marketing strategies.
+
+---
+
+# 📊 Data
+
+The dataset includes Agility Score (x) and Durability Score (y) for six different athletic shoes:
+
+| Shoe | Agility Score (x) | Durability Score (y) |
+|------|--------------------|-----------------------|
+| A    | 2                  | 8                     |
+| B    | 3                  | 7                     |
+| C    | 6                  | 4                     |
+| D    | 7                  | 5                     |
+| E    | 9                  | 2                     |
+| F    | 8                  | 3                     |
+
+---
+
+#Step 1: Calculate Euclidean Distances
+
+The Euclidean distance formula:
+
+distance = √[(x2 - x1)² + (y2 - y1)²]
+
+yaml
+Copy
+Edit
+
+Calculated distances:
+
+- d(A, B) ≈ 1.41  
+- d(A, C) ≈ 5.65  
+- d(A, D) ≈ 5.83  
+- d(A, E) ≈ 9.21  
+- d(A, F) ≈ 7.81  
+- d(B, C) ≈ 4.24  
+- d(B, D) ≈ 4.47  
+- d(B, E) ≈ 7.81  
+- d(B, F) ≈ 6.40  
+- d(C, D) ≈ 1.41  
+- d(C, E) ≈ 3.60  
+- d(C, F) ≈ 2.23  
+- d(D, E) ≈ 3.60  
+- d(D, F) ≈ 2.23  
+- d(E, F) ≈ 1.41
+
+---
+
+# Step 2: Distance Matrix
+
+|     | A    | B    | C    | D    | E    | F    |
+|-----|------|------|------|------|------|------|
+| A   | 0    | 1.41 | 5.65 | 5.83 | 9.21 | 7.81 |
+| B   | 1.41 | 0    | 4.24 | 4.47 | 7.81 | 6.40 |
+| C   | 5.65 | 4.24 | 0    | 1.41 | 3.60 | 2.23 |
+| D   | 5.83 | 4.47 | 1.41 | 0    | 3.60 | 2.23 |
+| E   | 9.21 | 7.81 | 3.60 | 3.60 | 0    | 1.41 |
+| F   | 7.81 | 6.40 | 2.23 | 2.23 | 1.41 | 0    |
+
+---
+
+# 🔗 Step 3: Single-Linkage Clustering
+
+### Iteration 1:
+
+Minimum distances:
+- d(A, B) = 1.41  
+- d(C, D) = 1.41  
+- d(E, F) = 1.41  
+
+Form clusters:
+- (A, B)  
+- (C, D)  
+- (E, F)  
+
+New distance matrix:
+
+|       | (A,B) | (C,D) | (E,F) |
+|-------|-------|-------|-------|
+| (A,B) | 0     | 4.24  | 6.40  |
+| (C,D) | 4.24  | 0     | 2.23  |
+| (E,F) | 6.40  | 2.23  | 0     |
+
+---
+
+# Iteration 2:
+
+Minimum distance:
+- d((C,D), (E,F)) = 2.23
+
+Form new cluster: **(C,D,E,F)**
+
+New distance matrix:
+
+|           | (A,B) | (C,D,E,F) |
+|-----------|-------|-----------|
+| (A,B)     | 0     | 4.24      |
+| (C,D,E,F) | 4.24  | 0         |
+
+---
+
+### Iteration 3:
+
+Minimum distance:
+- d((A,B), (C,D,E,F)) = 4.24
+
+Final cluster: **(A,B,C,D,E,F)**
+
+---
+
+## Dendrogram Summary
+
+Distance ~1.41: (A,B), (C,D), (E,F)
+Distance ~2.23: (C,D,E,F)
+Distance ~4.24: (A,B,C,D,E,F)
+
+yaml
+Copy
+Edit
+
+---
+
+# Conclusion
+
+This Single-Linkage Clustering analysis has grouped the athletic shoes based on performance similarity. These clusters can guide targeted marketing campaigns, such as bundling similar-performing shoes or creating product segments.
+
+
 
  
 
