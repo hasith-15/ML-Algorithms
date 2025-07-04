@@ -75,6 +75,10 @@ $\text{Salary} = 70,797.75$
 Therefore, the predicted salary for someone with 5.0 years of experience is $70,797.75.
 
 
+
+
+
+
 # Complete Linkage Clustering
 
 ## Complete Clustering# Hierarchical Clustering Analysis: Patient Health Profiles
